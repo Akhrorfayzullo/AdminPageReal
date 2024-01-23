@@ -1,0 +1,11 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ImageWrapper {
+  margin-top: 50px;
+  height: 852px;
+}
