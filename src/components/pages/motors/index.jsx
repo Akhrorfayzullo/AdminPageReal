@@ -7,8 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { InputForm } from "./inputForm";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
@@ -41,8 +42,28 @@ const rows = [
 ];
 
 export default function MotorComponent() {
+  const [tableRows, setTableRows] = React.useState(rows);
+
+  // Function to add new information
+  const addInfo = (info) => {
+    // Create a new row based on the submitted information
+    const newRow = createData(
+      info.name,
+      info.calories,
+      info.fat,
+      info.carbs,
+      info.protein
+    );
+
+    // Update the tableRows state with the new row
+    setTableRows((prevRows) => [...prevRows, newRow]);
+  };
+
   return (
     <div style={{ paddingRight: 50, paddingLeft: 50 }}>
+      {/* Pass the addInfo function to the InputForm component */}
+      <InputForm addInfo={addInfo} />
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -55,8 +76,9 @@ export default function MotorComponent() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+            {/* Iterate over the tableRows state to render the rows */}
+            {tableRows.map((row, index) => (
+              <StyledTableRow key={index}>
                 <StyledTableCell component="th" scope="row">
                   {row.name}
                 </StyledTableCell>

@@ -139,23 +139,29 @@ export default function PersistentDrawerLeft() {
             </ListItem>
           </Link>
           <Divider />
-          <ListItem>
-            <ListItemButton>
-              <ListItemIcon>Tuning</ListItemIcon>
-            </ListItemButton>
-          </ListItem>
+          <Link to="/tuning" style={{ textDecoration: "none" }}>
+            <ListItem>
+              <ListItemButton>
+                <ListItemIcon>Tuning</ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+          </Link>
           <Divider />
-          <ListItem>
-            <ListItemButton>
-              <ListItemIcon>Used Car</ListItemIcon>
-            </ListItemButton>
-          </ListItem>
+          <Link to="/used" style={{ textDecoration: "none" }}>
+            <ListItem>
+              <ListItemButton>
+                <ListItemIcon>Used Car</ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+          </Link>
           <Divider />
-          <ListItem>
-            <ListItemButton>
-              <ListItemIcon>Camping Place</ListItemIcon>
-            </ListItemButton>
-          </ListItem>
+          <Link to="/camping" style={{ textDecoration: "none" }}>
+            <ListItem>
+              <ListItemButton>
+                <ListItemIcon>Camping Place</ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+          </Link>
           <Divider />
           <ListItem>
             <ListItemButton>
