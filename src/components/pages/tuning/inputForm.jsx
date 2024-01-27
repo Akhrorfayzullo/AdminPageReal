@@ -15,11 +15,11 @@ export const InputForm = ({ addInfo }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const infos = {
-      name: name,
-      calories: calories,
-      fat: fat,
-      carbs: carbs,
-      protein: protein,
+      name: name.toString(),
+      calories: calories.toString().trim(),
+      fat: fat.toString().trim(),
+      carbs: carbs.toString().trim(),
+      protein: protein.toString().trim(),
     };
 
     addInfo(infos);

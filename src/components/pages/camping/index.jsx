@@ -1,6 +1,7 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
+import { Button } from "@mui/material";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
@@ -46,17 +47,38 @@ export default function CampingComponent() {
 
   // Function to add new information
   const addInfo = (info) => {
-    // Create a new row based on the submitted information
+    // Validate input data
+    if (
+      !info.name ||
+      isNaN(info.calories) ||
+      isNaN(info.fat) ||
+      isNaN(info.carbs) ||
+      isNaN(info.protein)
+    ) {
+      alert("Please provide valid input for all fields.");
+      return; // Don't proceed with adding the row if data is not valid
+    }
+
     const newRow = createData(
       info.name,
-      info.calories,
-      info.fat,
-      info.carbs,
-      info.protein
+      parseFloat(info.calories),
+      parseFloat(info.fat),
+      parseFloat(info.carbs),
+      parseFloat(info.protein)
     );
 
     // Update the tableRows state with the new row
     setTableRows((prevRows) => [...prevRows, newRow]);
+  };
+
+  const deleteRow = (index) => {
+    // Add a confirmation dialog or logic here if needed
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this row?"
+    );
+    if (confirmed) {
+      setTableRows((prevRows) => prevRows.filter((_, i) => i !== index));
+    }
   };
 
   return (
@@ -74,6 +96,7 @@ export default function CampingComponent() {
               <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
               <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
               <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+              <StyledTableCell align="center">Buttons</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -87,6 +110,31 @@ export default function CampingComponent() {
                 <StyledTableCell align="right">{row.fat}</StyledTableCell>
                 <StyledTableCell align="right">{row.carbs}</StyledTableCell>
                 <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                <StyledTableCell align="center">
+                  <div
+                    style={{
+                      border: "1px solid yellow",
+                      display: "inline-flex",
+                      gap: "20px",
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      // onClick={() => editRow(index)}
+                    >
+                      EDIT
+                    </Button>
+                    <Button
+                      // style={{ marginLeft: "30px" }}
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => deleteRow(index)}
+                    >
+                      DELETE
+                    </Button>
+                  </div>
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

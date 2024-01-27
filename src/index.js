@@ -18,7 +18,7 @@ root.render(
         <Route path="/motor" element={<MotorComponent />} />
         <Route path="/caravan" element={<CaravanComponent />} />
         <Route path="/tuning" element={<TuningComponent />} />
-        <Route path="/used" element={<TuningComponent />} />
+        <Route path="/used" element={<UsedComponent />} />
         <Route path="/camping" element={<CampingComponent />} />
       </Routes>
     </BrowserRouter>
